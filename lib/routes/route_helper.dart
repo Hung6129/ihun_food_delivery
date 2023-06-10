@@ -1,6 +1,5 @@
+import 'package:ihun_food_delivery/main_menu_page.dart';
 import '/pages/splash/splash_page.dart';
-
-import '/pages/home/home_page.dart';
 import '/pages/cart/cart_page.dart';
 import '/pages/food/popular_food_detail.dart';
 import '/pages/food/recommended_food_detail.dart';
@@ -28,7 +27,7 @@ class RoutesHelper {
         transition: Transition.fadeIn),
     GetPage(
         name: initial,
-        page: () => const HomePage(),
+        page: () => const MainMenuPage(),
         transition: Transition.fadeIn),
     GetPage(
         name: popularFood,

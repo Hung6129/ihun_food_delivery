@@ -7,9 +7,9 @@ class RecommendedProductController extends GetxController {
 
   RecommendedProductController({required this.recommendedProductRepo});
 
-  List<dynamic> _recommendedProductList = [];
+  List<ProductModel> _recommendedProductList = [];
 
-  List<dynamic> get recommendedProductList => _recommendedProductList;
+  List<ProductModel> get recommendedProductList => _recommendedProductList;
 
   Future<void> geRecommendedProductList() async {
     Response res = await recommendedProductRepo.getRecommendedProductList();

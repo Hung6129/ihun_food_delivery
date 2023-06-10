@@ -99,7 +99,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                   width: double.maxFinite,
                   child: Center(
                       child: BigText(
-                    text: product.name,
+                    text: product.name!,
                     size: Dimensions.font26,
                   )),
                 ),
@@ -109,7 +109,9 @@ class RecommendedFoodDetail extends StatelessWidget {
               expandedHeight: Dimensions.popularImageDetail,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.network(
-                  AppConstants.BASE_URL + AppConstants.UPLOAD_URI + product.img,
+                  AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URI +
+                      product.img!,
                   fit: BoxFit.cover,
                   width: double.maxFinite,
                 ),
@@ -124,7 +126,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                       right: Dimensions.width10,
                     ),
                     child: ExpandableText(
-                      text: product.description,
+                      text: product.description!,
                     ),
                   )
                 ],
