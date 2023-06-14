@@ -21,6 +21,8 @@ dependencies:
   persistent_bottom_nav_bar: ^5.0.2
 
   carousel_slider: ^4.2.1
+  firebase_messaging: ^14.6.2
+  cached_network_image: ^3.2.3
 
 dev_dependencies:
   flutter_test:

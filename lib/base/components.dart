@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ihun_food_delivery/pages/cart/cart_history.dart';
 import 'package:ihun_food_delivery/pages/home/home_page.dart';
+import 'package:ihun_food_delivery/pages/profile/user_profile_page.dart';
 
 const List<NavigationDestination> appBarDestinations = [
   NavigationDestination(
@@ -15,12 +16,12 @@ const List<NavigationDestination> appBarDestinations = [
     label: 'Cart',
     selectedIcon: Icon(Icons.shopping_bag),
   ),
-  // NavigationDestination(
-  //   tooltip: '',
-  //   icon: Icon(Icons.text_snippet_outlined),
-  //   label: 'Typography',
-  //   selectedIcon: Icon(Icons.text_snippet),
-  // ),
+  NavigationDestination(
+    tooltip: '',
+    icon: Icon(Icons.person_2_outlined),
+    label: 'Profile',
+    selectedIcon: Icon(Icons.person),
+  ),
   // NavigationDestination(
   //   tooltip: '',
   //   icon: Icon(Icons.invert_colors_on_outlined),
@@ -32,4 +33,5 @@ const List<NavigationDestination> appBarDestinations = [
 const pageWidget = [
   HomePage(),
   CartHistory(),
+  UserProfilePage(),
 ];

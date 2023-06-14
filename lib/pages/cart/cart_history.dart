@@ -44,12 +44,7 @@ class CartHistory extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        centerTitle: true,
-        title: const BigText(
-          text: "Cart History",
-          color: Colors.white,
-        ),
-        backgroundColor: Palette.mainColor,
+        title: const Text("Cart History"),
         actions: [
           Container(
             padding: const EdgeInsets.only(right: 20),
@@ -62,7 +57,6 @@ class CartHistory extends StatelessWidget {
       ),
       body: Column(
         children: [
-          //body
           Expanded(
             child: Container(
               margin: EdgeInsets.only(

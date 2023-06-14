@@ -1,150 +1,5 @@
-// import 'package:carousel_slider/carousel_slider.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-
-// import 'package:ihun_food_delivery/controllers/popular_product_controller.dart';
-// import 'package:ihun_food_delivery/controllers/recommended_product_controller.dart';
-// import 'package:ihun_food_delivery/custom/app_constants.dart';
-// import 'package:ihun_food_delivery/custom/big_text.dart';
-// import 'package:ihun_food_delivery/custom/dimension.dart';
-// import 'package:ihun_food_delivery/custom/small_text.dart';
-// import 'package:ihun_food_delivery/routes/route_helper.dart';
-
-// class HomePage extends StatefulWidget {
-//   const HomePage({Key? key}) : super(key: key);
-
-//   @override
-//   // ignore: library_private_types_in_public_api
-//   _HomePageState createState() => _HomePageState();
-// }
-
-// class _HomePageState extends State<HomePage> {
-//   int _current = 0;
-//   final CarouselController _controller = CarouselController();
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(),
-//       body: Column(
-//         children: [
-//           GetBuilder<PopularProductController>(
-//             builder: (popolarProducts) {
-
-//               return
-
-//           // SizedBox(
-//           //   height: Dimensions.height30,
-//           // ),
-//           // GetBuilder<RecommendedProductController>(
-//           //     builder: (recommendedProduct) {
-//           //   return ListView.builder(
-//           //     physics: const NeverScrollableScrollPhysics(),
-//           //     shrinkWrap: true,
-//           //     itemCount: recommendedProduct.recommendedProductList.length,
-//           //     itemBuilder: (context, index) => GestureDetector(
-//           //       onTap: () =>
-//           //           Get.toNamed(RoutesHelper.getRecommendedFood(index, "home")),
-//           //       child:
-
-//           //       Container(
-//           //         margin: EdgeInsets.only(
-//           //           left: Dimensions.width20,
-//           //           right: Dimensions.width20,
-//           //           bottom: Dimensions.height10,
-//           //         ),
-//           //         child: Row(
-//           //           children: [
-//           //             // Images section
-//           //             Container(
-//           //               width: Dimensions.listViewImages,
-//           //               height: Dimensions.listViewImages,
-//           //               decoration: BoxDecoration(
-//           //                 borderRadius: BorderRadius.circular(
-//           //                   Dimensions.radius20,
-//           //                 ),
-//           //                 image: DecorationImage(
-//           //                   fit: BoxFit.cover,
-//           //                   image: NetworkImage(
-//           //                       // ignore: prefer_interpolation_to_compose_strings
-//           //                       "${AppConstants.BASE_URL}/uploads/" +
-//           //                           recommendedProduct
-//           //                               .recommendedProductList[index].img!),
-//           //                 ),
-//           //               ),
-//           //             ),
-
-//           //             //text container
-//           //             Expanded(
-//           //               child: Container(
-//           //                 height: Dimensions.listViewTextConSize,
-//           //                 decoration: BoxDecoration(
-//           //                   borderRadius: BorderRadius.only(
-//           //                     topRight: Radius.circular(Dimensions.radius20),
-//           //                     bottomRight: Radius.circular(Dimensions.radius20),
-//           //                   ),
-//           //                   color: Colors.white,
-//           //                 ),
-//           //                 child: Padding(
-//           //                   padding: EdgeInsets.only(
-//           //                     left: Dimensions.width10,
-//           //                   ),
-//           //                   child: Column(
-//           //                     crossAxisAlignment: CrossAxisAlignment.start,
-//           //                     mainAxisAlignment: MainAxisAlignment.center,
-//           //                     children: [
-//           //                       BigText(
-//           //                         text: recommendedProduct
-//           //                             .recommendedProductList[index].name!,
-//           //                       ),
-//           //                       SizedBox(
-//           //                         height: Dimensions.height10,
-//           //                       ),
-//           //                       SmallText(
-//           //                           text: recommendedProduct
-//           //                               .recommendedProductList[index]
-//           //                               .location),
-//           //                       SizedBox(
-//           //                         height: Dimensions.height10,
-//           //                       ),
-//           //                       // const Row(
-//           //                       //   mainAxisAlignment:
-//           //                       //       MainAxisAlignment.spaceAround,
-//           //                       //   children: [
-//           //                       //     IconText(
-//           //                       //       icon: Icons.circle_sharp,
-//           //                       //       text: "High",
-//           //                       //       iconColor: Palette.iconColor1,
-//           //                       //     ),
-//           //                       //     IconText(
-//           //                       //       icon: Icons.location_on,
-//           //                       //       text: "2.3km",
-//           //                       //       iconColor: Palette.mainColor,
-//           //                       //     ),
-//           //                       //     IconText(
-//           //                       //       icon: Icons.access_time_filled_rounded,
-//           //                       //       text: "35min",
-//           //                       //       iconColor: Palette.iconColor2,
-//           //                       //     ),
-//           //                       //   ],
-//           //                       // ),
-//           //                     ],
-//           //                   ),
-//           //                 ),
-//           //               ),
-//           //             ),
-//           //           ],
-//           //         ),
-//           //       ),
-//           //     ),
-//           //   );
-//           // })
-//         ],
-//       ),
-//     );
-//   }
-// }
-
 import 'package:carousel_slider/carousel_slider.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ihun_food_delivery/controllers/popular_product_controller.dart';
@@ -161,6 +16,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   int _current = 0;
   final CarouselController _controller = CarouselController();
   @override
@@ -168,7 +28,6 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Home Page'),
-        actions: [],
       ),
       body: GetBuilder<PopularProductController>(
         builder: (controller) {
