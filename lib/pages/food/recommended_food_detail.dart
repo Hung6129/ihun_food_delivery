@@ -1,244 +1,226 @@
 import 'package:badges/badges.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '/controllers/cart_controller.dart';
-import '/controllers/popular_product_controller.dart';
-import '/controllers/recommended_product_controller.dart';
-import '/custom/app_constants.dart';
-import '/custom/app_icon.dart';
-import '/custom/big_text.dart';
-import '/custom/dimension.dart';
-import '/custom/expandable_text.dart';
-import '/routes/route_helper.dart';
-import '/theme/palette.dart';
-
+import 'package:ihun_food_delivery/controllers/cart_controller.dart';
+import 'package:ihun_food_delivery/controllers/popular_product_controller.dart';
+import 'package:ihun_food_delivery/controllers/recommended_product_controller.dart';
+import 'package:ihun_food_delivery/custom/app_constants.dart';
+import 'package:ihun_food_delivery/custom/app_icon.dart';
+import 'package:ihun_food_delivery/custom/big_text.dart';
+import 'package:ihun_food_delivery/custom/dimension.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:ihun_food_delivery/routes/route_helper.dart';
+import 'package:ihun_food_delivery/theme/palette.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  final int pageId;
-  final String page;
   const RecommendedFoodDetail({
-    Key? key,
+    super.key,
     required this.pageId,
     required this.page,
-  }) : super(key: key);
+  });
+  final int pageId;
+  final String page;
   @override
   Widget build(BuildContext context) {
-    var product =
-        Get.find<RecommendedProductController>().recommendedProductList[pageId];
-    Get.find<PopularProductController>()
-        .initProduct(product, Get.find<CartController>());
+    var product = Get.find<RecommendedProductController>().recommendedProductList[pageId];
+    Get.find<PopularProductController>().initProduct(product, Get.find<CartController>());
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: CustomScrollView(
-          slivers: [
-            SliverAppBar(
-              automaticallyImplyLeading: false,
-              toolbarHeight: 80,
-              title: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      if (page == "cartPage") {
-                        Get.toNamed(RoutesHelper.getCart());
-                      } else {
-                        Get.toNamed(RoutesHelper.getInitial());
-                      }
-                    },
-                    child: const AppIcon(icon: Icons.arrow_back_ios),
-                  ),
-                  GetBuilder<PopularProductController>(
-                    builder: ((controller) {
-                      return (Get.find<PopularProductController>().totalItems >=
-                              1
-                          ? badges.Badge(
-                              badgeStyle: const BadgeStyle(
-                                  badgeColor: Palette.mainColor),
-                              badgeAnimation:
-                                  const badges.BadgeAnimation.slide(),
-                              badgeContent: controller.totalItems >= 1
-                                  ? BigText(
-                                      text: Get.find<PopularProductController>()
-                                          .totalItems
-                                          .toString(),
-                                      size: Dimensions.font14,
-                                    )
-                                  : Container(),
-                              child: GestureDetector(
-                                  onTap: () {
-                                    Get.toNamed(RoutesHelper.getCart());
-                                  },
-                                  child: const AppIcon(
-                                      icon: Icons.shopping_cart_outlined)),
-                            )
-                          : GestureDetector(
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverAppBar(
+            pinned: true,
+            snap: false,
+            floating: false,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(Dimensions.height30),
+              ),
+            ),
+            expandedHeight: Dimensions.backGroundDetailImage,
+            stretch: true,
+            actions: [
+              GetBuilder<PopularProductController>(
+                builder: ((controller) {
+                  return (Get.find<PopularProductController>().totalItems >= 1
+                      ? badges.Badge(
+                          badgeStyle: const BadgeStyle(badgeColor: Palette.mainColor),
+                          badgeAnimation: const badges.BadgeAnimation.slide(),
+                          badgeContent: controller.totalItems >= 1
+                              ? BigText(
+                                  text: Get.find<PopularProductController>().totalItems.toString(),
+                                  size: Dimensions.font14,
+                                )
+                              : const SizedBox(),
+                          child: GestureDetector(
                               onTap: () {
-                                Get.toNamed(RoutesHelper.cartPage);
+                                Get.toNamed(RoutesHelper.getCart());
                               },
-                              child: const AppIcon(
-                                  icon: Icons.shopping_cart_outlined)));
-                    }),
-                  )
-                ],
-              ),
-              bottom: PreferredSize(
-                preferredSize: Size.fromHeight(
-                  Dimensions.height20,
-                ),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(Dimensions.radius20),
-                      topRight: Radius.circular(Dimensions.radius20),
-                    ),
-                  ),
-                  padding: EdgeInsets.only(
-                      top: Dimensions.height5, bottom: Dimensions.height10),
-                  width: double.maxFinite,
-                  child: Center(
-                      child: BigText(
-                    text: product.name!,
-                    size: Dimensions.font26,
-                  )),
-                ),
-              ),
-              pinned: true,
-              backgroundColor: Palette.yellowColor,
-              expandedHeight: Dimensions.popularImageDetail,
-              flexibleSpace: FlexibleSpaceBar(
-                background: Image.network(
-                  AppConstants.BASE_URL +
-                      AppConstants.UPLOAD_URI +
-                      product.img!,
-                  fit: BoxFit.cover,
-                  width: double.maxFinite,
-                ),
-              ),
-            ),
-            SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  Container(
-                    padding: EdgeInsets.only(
-                      left: Dimensions.width10,
-                      right: Dimensions.width10,
-                    ),
-                    child: ExpandableText(
-                      text: product.description!,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-        bottomNavigationBar: GetBuilder<PopularProductController>(
-          builder: (controller) {
-            return Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(
-                      left: Dimensions.width20 * 2.5,
-                      right: Dimensions.width20 * 2.5,
-                      top: Dimensions.height10,
-                      bottom: Dimensions.height10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          controller.setQuantity(false);
-                        },
-                        child: AppIcon(
-                          icon: Icons.remove,
-                          iconSize: Dimensions.icon24,
-                          bgColor: Palette.mainColor,
-                          iconColor: Colors.white,
-                        ),
-                      ),
-                      BigText(
-                        text: "\$ ${product.price} X ${controller.inCartItems}",
-                        color: Palette.mainBlackColor,
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          controller.setQuantity(true);
-                        },
-                        child: AppIcon(
-                          icon: Icons.add,
-                          iconSize: Dimensions.icon24,
-                          bgColor: Palette.mainColor,
-                          iconColor: Colors.white,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  height: Dimensions.bottomHeight,
-                  padding: EdgeInsets.only(
-                      top: Dimensions.height20,
-                      bottom: Dimensions.height20,
-                      left: Dimensions.width20,
-                      right: Dimensions.width20),
-                  decoration: BoxDecoration(
-                    color: Palette.buttonBackgroundColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(Dimensions.radius20),
-                      topRight: Radius.circular(Dimensions.radius20),
-                    ),
-                  ),
-                  // 2 bottom buttons
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(
-                          top: Dimensions.height20,
-                          bottom: Dimensions.height20,
-                          left: Dimensions.width10,
-                          right: Dimensions.width10,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              BorderRadius.circular(Dimensions.radius20),
-                          color: Colors.white,
-                        ),
-                        child: Icon(
-                          Icons.favorite,
-                          color: Palette.mainColor,
-                          size: Dimensions.icon24,
-                        ),
-                      ),
-                      GestureDetector(
+                              child: const AppIcon(icon: Icons.shopping_cart_outlined)),
+                        )
+                      : GestureDetector(
                           onTap: () {
-                            controller.addItems(product);
+                            Get.toNamed(RoutesHelper.cartPage);
                           },
-                          child: Container(
-                            padding: EdgeInsets.only(
-                                top: Dimensions.height20,
-                                bottom: Dimensions.height20,
-                                left: Dimensions.width10,
-                                right: Dimensions.width10),
-                            decoration: BoxDecoration(
-                              color: Palette.mainColor,
-                              borderRadius:
-                                  BorderRadius.circular(Dimensions.radius20),
-                            ),
-                            child: BigText(
-                              text: "\$ ${product.price} | Thêm vào giỏ",
-                              color: Colors.white,
-                            ),
-                          ))
-                    ],
+                          child: const AppIcon(icon: Icons.shopping_cart_outlined)));
+                }),
+              ),
+              SizedBox(width: Dimensions.height20)
+            ],
+            flexibleSpace: FlexibleSpaceBar(
+              stretchModes: const [StretchMode.zoomBackground],
+              background: CachedNetworkImage(
+                imageUrl: AppConstants.BASE_URL + AppConstants.UPLOAD_URI + product.img!,
+                imageBuilder: (context, imageProvider) => Container(
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
-              ],
-            );
-          },
-        ));
+                placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(),
+                ),
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+            ),
+          ),
+          SliverToBoxAdapter(
+              child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(Dimensions.height10),
+                child: Text(
+                  product.name!,
+                  style: TextStyle(fontSize: Dimensions.font26),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(Dimensions.height10),
+                child: Text(product.description!),
+              ),
+            ],
+          )),
+        ],
+      ),
+      bottomSheet: Container(
+        decoration: ShapeDecoration(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(
+                Dimensions.height30,
+              ),
+              topRight: Radius.circular(
+                Dimensions.height30,
+              ),
+            ),
+          ),
+          color: Palette.mainColor,
+        ),
+        width: double.maxFinite,
+        height: Dimensions.bottomSheet,
+        child: Padding(
+          padding: EdgeInsets.all(Dimensions.height10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 2,
+                child: ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet<void>(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return GetBuilder<PopularProductController>(
+                            builder: (controller) => SizedBox(
+                                  height: Dimensions.bottomSheetPopUp,
+                                  child: Column(
+                                    children: [
+                                      Expanded(
+                                        flex: 2,
+                                        child: Row(
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          children: [
+                                            ElevatedButton(
+                                              child: Text(
+                                                '-',
+                                                style: TextStyle(fontSize: Dimensions.font26),
+                                              ),
+                                              onPressed: () => controller.setQuantity(false),
+                                            ),
+                                            SizedBox(
+                                              width: Dimensions.height15,
+                                            ),
+                                            Text(
+                                              controller.inCartItems.toString(),
+                                              style: TextStyle(fontSize: Dimensions.font26),
+                                            ),
+                                            SizedBox(
+                                              width: Dimensions.height15,
+                                            ),
+                                            ElevatedButton(
+                                              child: Text(
+                                                '+',
+                                                style: TextStyle(fontSize: Dimensions.font26),
+                                              ),
+                                              onPressed: () => controller.setQuantity(true),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Column(
+                                          children: [
+                                            const Divider(),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                controller.addItems(product);
+                                                Navigator.pop(context);
+                                              },
+                                              child: Text(
+                                                'Add to cart',
+                                                style: TextStyle(fontSize: Dimensions.font26),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ));
+                      },
+                    );
+                  },
+                  child: Text(
+                    'Add to cart',
+                    style: TextStyle(fontSize: Dimensions.font20),
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: Dimensions.height10,
+              ),
+              Expanded(
+                flex: 1,
+                child: ElevatedButton.icon(
+                  label: Text(
+                    '+',
+                    style: TextStyle(fontSize: Dimensions.font20),
+                  ),
+                  onPressed: () {},
+                  icon: const Icon(Icons.favorite),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

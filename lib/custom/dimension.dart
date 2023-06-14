@@ -53,6 +53,11 @@ class Dimensions {
   // splash screen
   static double splashImg = screenHeight / (screenHeight / 250);
 
+  // back ground detail image
+  static double backGroundDetailImage = screenHeight / (screenHeight / 280);
+
   // bottom sheet
   static double bottomSheet = screenHeight / (screenHeight / 120);
+    // bottom sheet pop up
+  static double bottomSheetPopUp = screenHeight / (screenHeight / 350);
 }
