@@ -42,7 +42,6 @@ class CartController extends GetxController {
       if (totalQuantity <= 0) {
         _items.remove(productModel.id);
       }
-      //
     } else {
       if (quantity > 0) {
         _items.putIfAbsent(productModel.id!, () {
@@ -59,7 +58,7 @@ class CartController extends GetxController {
         });
       } else {
         Get.snackbar(
-          "Bruh",
+          "Cart is empty",
           "Your quantity have to at least one",
           colorText: Colors.black,
           backgroundColor: Palette.yellowColor,
@@ -122,8 +121,7 @@ class CartController extends GetxController {
     storageModel = items;
     print("length of cart items${storageModel.length}");
     for (int i = 0; i < storageModel.length; i++) {
-      _items.putIfAbsent(
-          storageModel[i].productModel!.id!, () => storageModel[i]);
+      _items.putIfAbsent(storageModel[i].productModel!.id!, () => storageModel[i]);
     }
   }
 

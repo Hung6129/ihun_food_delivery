@@ -19,13 +19,11 @@ class CartHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var getCartHistoryList =
-        Get.find<CartController>().getCartHistoryList().reversed.toList();
+    var getCartHistoryList = Get.find<CartController>().getCartHistoryList().reversed.toList();
     Map<String, int> cartItemsPerOrder = {};
     for (int i = 0; i < getCartHistoryList.length; i++) {
       if (cartItemsPerOrder.containsKey(getCartHistoryList[i].time)) {
-        cartItemsPerOrder.update(
-            getCartHistoryList[i].time!, (value) => ++value);
+        cartItemsPerOrder.update(getCartHistoryList[i].time!, (value) => ++value);
       } else {
         cartItemsPerOrder.putIfAbsent(getCartHistoryList[i].time!, () => 1);
       }
@@ -42,7 +40,6 @@ class CartHistory extends StatelessWidget {
     List<int> itemsPerOrder = cartItemsitemsPerOrder();
     var saveCounter = 0;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
         title: const Text("Cart History"),
         actions: [
@@ -59,10 +56,7 @@ class CartHistory extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(
-                  top: Dimensions.height20,
-                  left: Dimensions.width20,
-                  right: Dimensions.width20),
+              margin: EdgeInsets.only(top: Dimensions.height20, left: Dimensions.width20, right: Dimensions.width20),
               child: ListView(
                 children: [
                   for (int i = 0; i < itemsPerOrder.length; i++)
@@ -72,9 +66,7 @@ class CartHistory extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           (() {
-                            DateTime parseTime =
-                                DateFormat("yyyy-MM-dd HH:mm:ss").parse(
-                                    getCartHistoryList[saveCounter].time!);
+                            DateTime parseTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[saveCounter].time!);
                             var output = DateFormat("dd/MM/yyyy hh:mm a");
                             var outDate = output.format(parseTime);
                             return BigText(text: outDate);
@@ -90,28 +82,20 @@ class CartHistory extends StatelessWidget {
                                 children: List.generate(
                                   itemsPerOrder[i],
                                   (index) {
-                                    if (saveCounter <
-                                        getCartHistoryList.length) {
+                                    if (saveCounter < getCartHistoryList.length) {
                                       saveCounter++;
                                     }
                                     return index <= 1
                                         ? Container(
-                                            margin: EdgeInsets.only(
-                                                left: Dimensions.width10),
+                                            margin: EdgeInsets.only(left: Dimensions.width10),
                                             width: 80,
                                             height: 80,
                                             decoration: BoxDecoration(
-                                              borderRadius:
-                                                  BorderRadius.circular(
-                                                      Dimensions.radius15 / 2),
+                                              borderRadius: BorderRadius.circular(Dimensions.radius15 / 2),
                                               image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: NetworkImage(
-                                                  AppConstants.BASE_URL +
-                                                      AppConstants.UPLOAD_URI +
-                                                      getCartHistoryList[
-                                                              saveCounter - 1]
-                                                          .img!,
+                                                  AppConstants.BASE_URL + AppConstants.UPLOAD_URI + getCartHistoryList[saveCounter - 1].img!,
                                                 ),
                                               ),
                                             ),
@@ -121,8 +105,7 @@ class CartHistory extends StatelessWidget {
                                 ),
                               ),
                               Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const SmallText(text: "Total"),
@@ -131,34 +114,24 @@ class CartHistory extends StatelessWidget {
                                     onTap: () {
                                       var orderTime = cartOrderTimeToList();
                                       Map<int, CartModel> seeMore = {};
-                                      for (var j = 0;
-                                          j < getCartHistoryList.length;
-                                          j++) {
-                                        if (getCartHistoryList[j].time ==
-                                            orderTime[i]) {
+                                      for (var j = 0; j < getCartHistoryList.length; j++) {
+                                        if (getCartHistoryList[j].time == orderTime[i]) {
                                           seeMore.putIfAbsent(
                                               getCartHistoryList[j].id!,
-                                              () => CartModel.fromJson(
-                                                      jsonDecode(jsonEncode(
+                                              () => CartModel.fromJson(jsonDecode(jsonEncode(
                                                     getCartHistoryList[j],
                                                   ))));
                                         }
                                       }
-                                      Get.find<CartController>().setItems =
-                                          seeMore;
-                                      Get.find<CartController>()
-                                          .addToCartList();
+                                      Get.find<CartController>().setItems = seeMore;
+                                      Get.find<CartController>().addToCartList();
                                       Get.toNamed(RoutesHelper.getCart());
                                     },
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: Dimensions.width10,
-                                          vertical: Dimensions.height10 / 2),
+                                      padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10 / 2),
                                       decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(
-                                            Dimensions.radius15 / 2),
-                                        border: Border.all(
-                                            width: 1, color: Palette.mainColor),
+                                        borderRadius: BorderRadius.circular(Dimensions.radius15 / 2),
+                                        border: Border.all(width: 1, color: Palette.mainColor),
                                       ),
                                       child: const SmallText(text: "See more"),
                                     ),

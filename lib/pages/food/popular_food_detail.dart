@@ -38,6 +38,17 @@ class PopularFoodDetail extends StatelessWidget {
             ),
             expandedHeight: Dimensions.backGroundDetailImage,
             stretch: true,
+            automaticallyImplyLeading: false,
+            leading: GestureDetector(
+              child: const Icon(Icons.arrow_back_ios_new),
+              onTap: () {
+                if (page == 'cart-page') {
+                  Get.toNamed(RoutesHelper.getCart());
+                } else {
+                  Get.toNamed(RoutesHelper.getInitial());
+                }
+              },
+            ),
             actions: [
               GetBuilder<PopularProductController>(
                 builder: ((controller) {
@@ -57,11 +68,7 @@ class PopularFoodDetail extends StatelessWidget {
                               },
                               child: const AppIcon(icon: Icons.shopping_cart_outlined)),
                         )
-                      : GestureDetector(
-                          onTap: () {
-                            Get.toNamed(RoutesHelper.cartPage);
-                          },
-                          child: const AppIcon(icon: Icons.shopping_cart_outlined)));
+                      : const AppIcon(icon: Icons.shopping_cart_outlined));
                 }),
               ),
               SizedBox(width: Dimensions.height20)
@@ -72,7 +79,8 @@ class PopularFoodDetail extends StatelessWidget {
                 imageUrl: AppConstants.BASE_URL + AppConstants.UPLOAD_URI + product.img!,
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
+                    borderRadius:
+                        const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
                     image: DecorationImage(
                       image: imageProvider,
                       fit: BoxFit.cover,
@@ -130,6 +138,9 @@ class PopularFoodDetail extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))),
                   onPressed: () {
                     showModalBottomSheet<void>(
                       context: context,
@@ -139,8 +150,15 @@ class PopularFoodDetail extends StatelessWidget {
                                   height: Dimensions.bottomSheetPopUp,
                                   child: Column(
                                     children: [
+                                      SizedBox(
+                                        height: Dimensions.height45,
+                                      ),
+                                      Text(
+                                        'Adding ${product.name!} to your cart',
+                                        style: const TextStyle(fontSize: 20),
+                                      ),
                                       Expanded(
-                                        flex: 2,
+                                        flex: 1,
                                         child: Row(
                                           crossAxisAlignment: CrossAxisAlignment.center,
                                           mainAxisAlignment: MainAxisAlignment.center,
@@ -177,15 +195,38 @@ class PopularFoodDetail extends StatelessWidget {
                                         child: Column(
                                           children: [
                                             const Divider(),
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                controller.addItems(product);
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text(
-                                                'Add to cart',
-                                                style: TextStyle(fontSize: Dimensions.font26),
-                                              ),
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                ElevatedButton(
+                                                  style: ButtonStyle(
+                                                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                                                    backgroundColor: MaterialStateProperty.all(Palette.mainColor),
+                                                  ),
+                                                  child: const Text(
+                                                    'Add To Cart',
+                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                  ),
+                                                  onPressed: () {
+                                                    controller.addItems(product);
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                                ElevatedButton(
+                                                  style: ButtonStyle(
+                                                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                                                    backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+                                                  ),
+                                                  child: const Text(
+                                                    'Cancel',
+                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
@@ -196,9 +237,8 @@ class PopularFoodDetail extends StatelessWidget {
                       },
                     );
                   },
-                  child: Text(
-                    'Add to cart',
-                    style: TextStyle(fontSize: Dimensions.font20),
+                  child: const Text(
+                    'Add To Cart',
                   ),
                 ),
               ),
@@ -208,10 +248,10 @@ class PopularFoodDetail extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: ElevatedButton.icon(
-                  label: Text(
-                    '+',
-                    style: TextStyle(fontSize: Dimensions.font20),
-                  ),
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))),
+                  label: const Text('+'),
                   onPressed: () {},
                   icon: const Icon(Icons.favorite),
                 ),

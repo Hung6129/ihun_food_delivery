@@ -16,8 +16,7 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with TickerProviderStateMixin {
+class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
   Future<void> _loadData() async {
@@ -29,16 +28,11 @@ class _SplashScreenState extends State<SplashScreen>
   void initState() {
     super.initState();
     _loadData();
-    controller =
-        AnimationController(vsync: this, duration: const Duration(seconds: 2))
-          ..forward();
+    controller = AnimationController(vsync: this, duration: const Duration(seconds: 2))..forward();
     animation = CurvedAnimation(parent: controller, curve: Curves.linear);
-    Timer(
-      const Duration(seconds: 4),
-      () {
-        Get.offNamed(RoutesHelper.getInitial());
-      },
-    );
+    Timer(const Duration(seconds: 4), () {
+      Get.offNamed(RoutesHelper.getInitial());
+    });
   }
 
   @override
@@ -51,17 +45,11 @@ class _SplashScreenState extends State<SplashScreen>
           ScaleTransition(
             scale: animation,
             child: Center(
-              child: Image.asset(
-                "assets/image/logo part 1.png",
-                width: Dimensions.splashImg,
-              ),
+              child: Image.asset("assets/image/logo part 1.png", width: Dimensions.splashImg),
             ),
           ),
           Center(
-            child: Image.asset(
-              "assets/image/logo part 2.png",
-              width: Dimensions.splashImg,
-            ),
+            child: Image.asset("assets/image/logo part 2.png", width: Dimensions.splashImg),
           )
         ],
       ),

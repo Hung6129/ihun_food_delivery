@@ -13,9 +13,6 @@ class CartRepo {
   List<String> cartHistory = [];
 
   void addToCart(List<CartModel> cartList) {
-    // share.remove(AppConstants.CART_LIST);
-    // share.remove(AppConstants.CART_HISTORY_LIST);
-
     var time = DateTime.now().toString();
     cart = [];
     for (var element in cartList) {
@@ -23,8 +20,6 @@ class CartRepo {
       continue;
     }
     share.setStringList(AppConstants.CART_LIST, cart);
-    // getCartModel();
-    // print(share.getStringList(AppConstants.CART_LIST));
   }
 
   List<CartModel> getCartModel() {
@@ -57,13 +52,11 @@ class CartRepo {
       cartHistory = share.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     for (int i = 0; i < cart.length; i++) {
-      print("list${cart[i]}");
+      print("list ${cart[i]}");
       cartHistory.add(cart[i]);
     }
     removeCart();
     share.setStringList(AppConstants.CART_HISTORY_LIST, cartHistory);
-    print(getCartHistoryList().length.toString());
-    print(getCartHistoryList()[0].time.toString());
   }
 
   void removeCart() {

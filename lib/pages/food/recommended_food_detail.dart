@@ -58,11 +58,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                               },
                               child: const AppIcon(icon: Icons.shopping_cart_outlined)),
                         )
-                      : GestureDetector(
-                          onTap: () {
-                            Get.toNamed(RoutesHelper.cartPage);
-                          },
-                          child: const AppIcon(icon: Icons.shopping_cart_outlined)));
+                      : const AppIcon(icon: Icons.shopping_cart_outlined));
                 }),
               ),
               SizedBox(width: Dimensions.height20)
@@ -131,6 +127,9 @@ class RecommendedFoodDetail extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                      padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                      textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20))),
                   onPressed: () {
                     showModalBottomSheet<void>(
                       context: context,
@@ -153,21 +152,11 @@ class RecommendedFoodDetail extends StatelessWidget {
                                               ),
                                               onPressed: () => controller.setQuantity(false),
                                             ),
-                                            SizedBox(
-                                              width: Dimensions.height15,
-                                            ),
-                                            Text(
-                                              controller.inCartItems.toString(),
-                                              style: TextStyle(fontSize: Dimensions.font26),
-                                            ),
-                                            SizedBox(
-                                              width: Dimensions.height15,
-                                            ),
+                                            SizedBox(width: Dimensions.height15),
+                                            Text(controller.inCartItems.toString(), style: TextStyle(fontSize: Dimensions.font26)),
+                                            SizedBox(width: Dimensions.height15),
                                             ElevatedButton(
-                                              child: Text(
-                                                '+',
-                                                style: TextStyle(fontSize: Dimensions.font26),
-                                              ),
+                                              child: Text('+', style: TextStyle(fontSize: Dimensions.font26)),
                                               onPressed: () => controller.setQuantity(true),
                                             ),
                                           ],
@@ -178,15 +167,38 @@ class RecommendedFoodDetail extends StatelessWidget {
                                         child: Column(
                                           children: [
                                             const Divider(),
-                                            ElevatedButton(
-                                              onPressed: () {
-                                                controller.addItems(product);
-                                                Navigator.pop(context);
-                                              },
-                                              child: Text(
-                                                'Add to cart',
-                                                style: TextStyle(fontSize: Dimensions.font26),
-                                              ),
+                                            Row(
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              children: [
+                                                ElevatedButton(
+                                                  style: ButtonStyle(
+                                                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                                                    backgroundColor: MaterialStateProperty.all(Palette.mainColor),
+                                                  ),
+                                                  child: const Text(
+                                                    'Add To Cart',
+                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                  ),
+                                                  onPressed: () {
+                                                    controller.addItems(product);
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                                ElevatedButton(
+                                                  style: ButtonStyle(
+                                                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                                                    backgroundColor: MaterialStateProperty.all(Colors.redAccent),
+                                                  ),
+                                                  child: const Text(
+                                                    'Cancel',
+                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+                                                  ),
+                                                  onPressed: () {
+                                                    Navigator.pop(context);
+                                                  },
+                                                ),
+                                              ],
                                             ),
                                           ],
                                         ),
@@ -197,9 +209,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                       },
                     );
                   },
-                  child: Text(
-                    'Add to cart',
-                    style: TextStyle(fontSize: Dimensions.font20),
+                  child: const Text(
+                    'Add To Cart',
                   ),
                 ),
               ),
@@ -209,9 +220,12 @@ class RecommendedFoodDetail extends StatelessWidget {
               Expanded(
                 flex: 1,
                 child: ElevatedButton.icon(
-                  label: Text(
-                    '+',
-                    style: TextStyle(fontSize: Dimensions.font20),
+                  label: const Text('+'),
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
+                    textStyle: MaterialStateProperty.all(
+                      const TextStyle(fontSize: 20),
+                    ),
                   ),
                   onPressed: () {},
                   icon: const Icon(Icons.favorite),

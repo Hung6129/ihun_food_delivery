@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           builder: (controller) {
             return GetMaterialApp(
               theme: ThemeData(useMaterial3: true),
-              title: 'Flutter Food Delivery App',
+              title: 'iHun Food Delivery App',
               debugShowCheckedModeBanner: false,
               initialRoute: RoutesHelper.getSplash(),
               getPages: RoutesHelper.routes,
