@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:ihun_food_delivery/controllers/popular_product_controller.dart';
 import 'package:ihun_food_delivery/controllers/recommended_product_controller.dart';
-import 'package:ihun_food_delivery/custom/app_constants.dart';
+import 'package:ihun_food_delivery/core/app_constants.dart';
 import 'package:ihun_food_delivery/config/routes/route_helper.dart';
 
 class PopularFoods extends StatefulWidget {

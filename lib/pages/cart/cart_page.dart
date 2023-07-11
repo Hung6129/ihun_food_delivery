@@ -5,8 +5,7 @@ import 'package:ihun_food_delivery/config/palettes.dart';
 
 import 'package:ihun_food_delivery/controllers/cart_controller.dart';
 
-import 'package:ihun_food_delivery/custom/big_text.dart';
-import 'package:ihun_food_delivery/custom/dimension.dart';
+import 'package:ihun_food_delivery/config/dimension.dart';
 
 import 'package:intl/intl.dart';
 
@@ -78,8 +77,9 @@ class CartPage extends StatelessWidget {
                               ),
                             ),
                             SizedBox(width: Dimensions.width10 / 2),
-                            BigText(
-                              text: cartItem.quantity!.toString(),
+                            Text(
+                              cartItem.quantity.toString(),
+                              style: TextStyle(fontSize: Dimensions.font20),
                             ),
                             SizedBox(width: Dimensions.width10 / 2),
                             GestureDetector(

@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '/controllers/cart_controller.dart';
 import '/controllers/popular_product_controller.dart';
 import '/controllers/recommended_product_controller.dart';
-import '/custom/app_constants.dart';
+import '../core/app_constants.dart';
 import '/data/api/api_client.dart';
 import '/data/repository/cart_repo.dart';
 import '/data/repository/popular_product_repo.dart';

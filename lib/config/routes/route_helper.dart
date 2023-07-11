@@ -1,8 +1,8 @@
 import 'package:ihun_food_delivery/main_menu_page.dart';
 import '/pages/splash/splash_page.dart';
 import '/pages/cart/cart_page.dart';
-import '/pages/food/popular_food_detail.dart';
-import '/pages/food/recommended_food_detail.dart';
+import '../../pages/food_detail/popular_food_detail.dart';
+import '../../pages/food_detail/recommended_food_detail.dart';
 import 'package:get/get.dart';
 
 class RoutesHelper {

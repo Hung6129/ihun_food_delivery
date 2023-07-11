@@ -4,16 +4,16 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:ihun_food_delivery/config/palettes.dart';
+import 'package:ihun_food_delivery/config/text_styles.dart';
 import 'package:intl/intl.dart';
 
 import '../../controllers/cart_controller.dart';
-import '../../custom/app_constants.dart';
-import '../../custom/big_text.dart';
-import '../../custom/dimension.dart';
-import '../../custom/small_text.dart';
+import '../../core/app_constants.dart';
+
+import '../../config/dimension.dart';
+
 import '../../model/cart_model.dart';
 import '../../config/routes/route_helper.dart';
-
 
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
@@ -67,10 +67,14 @@ class CartHistory extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           (() {
-                            DateTime parseTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[saveCounter].time!);
+                            DateTime parseTime =
+                                DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[saveCounter].time!);
                             var output = DateFormat("dd/MM/yyyy hh:mm a");
                             var outDate = output.format(parseTime);
-                            return BigText(text: outDate);
+                            return Text(
+                              outDate,
+                              style: TextStyle(fontSize: Dimensions.font20, fontWeight: FontWeight.bold),
+                            );
                           }()),
                           SizedBox(
                             height: Dimensions.height10,
@@ -96,7 +100,9 @@ class CartHistory extends StatelessWidget {
                                               image: DecorationImage(
                                                 fit: BoxFit.cover,
                                                 image: NetworkImage(
-                                                  AppConstants.BASE_URL + AppConstants.UPLOAD_URI + getCartHistoryList[saveCounter - 1].img!,
+                                                  AppConstants.BASE_URL +
+                                                      AppConstants.UPLOAD_URI +
+                                                      getCartHistoryList[saveCounter - 1].img!,
                                                 ),
                                               ),
                                             ),
@@ -109,8 +115,11 @@ class CartHistory extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const SmallText(text: "Total"),
-                                  BigText(text: "${itemsPerOrder[i]} Items"),
+                                  Text(
+                                    "Total Price",
+                                    style: TextStyles.defaultStyle.copyWith(color: Palettes.p1).bold,
+                                  ),
+                                  Text("${itemsPerOrder[i]} Items"),
                                   GestureDetector(
                                     onTap: () {
                                       var orderTime = cartOrderTimeToList();
@@ -129,13 +138,13 @@ class CartHistory extends StatelessWidget {
                                       Get.toNamed(RoutesHelper.getCart());
                                     },
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10 / 2),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(Dimensions.radius15 / 2),
-                                        border: Border.all(width: 1, color: Palettes.p1),
-                                      ),
-                                      child: const SmallText(text: "See more"),
-                                    ),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: Dimensions.width10, vertical: Dimensions.height10 / 2),
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(Dimensions.radius15 / 2),
+                                          border: Border.all(width: 1, color: Palettes.p1),
+                                        ),
+                                        child: const Text("See More", style: TextStyle(color: Palettes.p1))),
                                   ),
                                 ],
                               ),

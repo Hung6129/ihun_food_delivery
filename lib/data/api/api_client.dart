@@ -1,4 +1,4 @@
-import '/custom/app_constants.dart';
+import '../../core/app_constants.dart';
 import 'package:get/get.dart';
 
 class ApiClient extends GetConnect implements GetxService {
