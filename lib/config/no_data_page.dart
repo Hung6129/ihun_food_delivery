@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-
-import '../custom/dimension.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NodataPage extends StatelessWidget {
   final String text;
   final String imagePath;
-  const NodataPage({Key? key, required this.text, required this.imagePath})
-      : super(key: key);
+  const NodataPage({Key? key, required this.text, required this.imagePath}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +18,12 @@ class NodataPage extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.22,
         ),
         SizedBox(
-          height: Dimensions.height10,
+          height: 10.h,
         ),
         Text(
           text,
           style: TextStyle(
-            fontSize: Dimensions.font16,
+            fontSize: 16.sp,
             color: Theme.of(context).disabledColor,
           ),
           textAlign: TextAlign.center,

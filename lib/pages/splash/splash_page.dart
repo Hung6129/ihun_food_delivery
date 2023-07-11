@@ -1,13 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 
 import '../../controllers/popular_product_controller.dart';
 import '../../controllers/recommended_product_controller.dart';
-import '../../custom/dimension.dart';
-import '../../routes/route_helper.dart';
+
+import '../../config/routes/route_helper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -45,11 +46,11 @@ class _SplashScreenState extends State<SplashScreen> with TickerProviderStateMix
           ScaleTransition(
             scale: animation,
             child: Center(
-              child: Image.asset("assets/image/logo part 1.png", width: Dimensions.splashImg),
+              child: Image.asset("assets/image/logo part 1.png", width: 250.w),
             ),
           ),
           Center(
-            child: Image.asset("assets/image/logo part 2.png", width: Dimensions.splashImg),
+            child: Image.asset("assets/image/logo part 2.png", width: 250.w),
           )
         ],
       ),

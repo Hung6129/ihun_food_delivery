@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ihun_food_delivery/base/components.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:ihun_food_delivery/config/palettes.dart';
+
+import 'config/components.dart';
 
 class MainMenuPage extends StatefulWidget {
   const MainMenuPage({super.key});
@@ -15,6 +18,12 @@ class _MainMenuPageState extends State<MainMenuPage> {
     return Scaffold(
       body: pageWidget[navDrawerIndex],
       bottomNavigationBar: NavigationBar(
+        height: 50.h,
+        backgroundColor: Palettes.p4,
+        indicatorColor: Palettes.textWhite,
+        animationDuration: const Duration(milliseconds: 200),
+        surfaceTintColor: Palettes.p5,
+        labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         onDestinationSelected: (selectedIndex) {
           setState(() {
             navDrawerIndex = selectedIndex;

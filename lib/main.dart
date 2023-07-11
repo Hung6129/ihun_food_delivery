@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'controllers/cart_controller.dart';
 import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
-import 'routes/route_helper.dart';
+import 'config/routes/route_helper.dart';
 import 'helper/dependencies.dart' as depen;
 
 void main() async {

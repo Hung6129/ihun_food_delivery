@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:ihun_food_delivery/base/no_data_page.dart';
+import 'package:ihun_food_delivery/config/no_data_page.dart';
+import 'package:ihun_food_delivery/config/palettes.dart';
+
 import 'package:ihun_food_delivery/controllers/cart_controller.dart';
 
 import 'package:ihun_food_delivery/custom/big_text.dart';
 import 'package:ihun_food_delivery/custom/dimension.dart';
 
-import 'package:ihun_food_delivery/theme/palette.dart';
 import 'package:intl/intl.dart';
 
 class CartPage extends StatelessWidget {
@@ -73,7 +74,7 @@ class CartPage extends StatelessWidget {
                               },
                               child: const Icon(
                                 Icons.remove,
-                                color: Palette.signColor,
+                                color: Palettes.p3,
                               ),
                             ),
                             SizedBox(width: Dimensions.width10 / 2),
@@ -87,7 +88,7 @@ class CartPage extends StatelessWidget {
                               },
                               child: const Icon(
                                 Icons.add,
-                                color: Palette.signColor,
+                                color: Palettes.p3,
                               ),
                             ),
                           ],
@@ -113,7 +114,7 @@ class CartPage extends StatelessWidget {
               ),
             ),
           ),
-          color: Palette.mainColor,
+          color: Palettes.p1,
         ),
         width: double.maxFinite,
         height: Dimensions.bottomSheet,

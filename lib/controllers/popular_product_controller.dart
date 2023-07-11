@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
+import 'package:ihun_food_delivery/config/widgets/flutter_toast.dart';
 import '/controllers/cart_controller.dart';
 import '/data/repository/popular_product_repo.dart';
 import '/model/cart_model.dart';
 import '/model/product.dart';
-import '/theme/palette.dart';
+
 import 'package:get/get.dart';
 
 class PopularProductController extends GetxController {
@@ -49,13 +49,7 @@ class PopularProductController extends GetxController {
 // check quantity for decrease more than 1 items
   int checkQuantity(int quantity) {
     if ((_intCartItems + quantity) < 0) {
-      Get.snackbar(
-        "Bruh",
-        "You can not reduce more",
-        backgroundColor: Palette.yellowColor,
-        colorText: Colors.black,
-        duration: const Duration(seconds: 2),
-      );
+      toastInfor(text: "You can't decrease more than 1 items");
       if (_intCartItems > 0) {
         _quantity = -_intCartItems;
         return _quantity;

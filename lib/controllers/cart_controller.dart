@@ -1,8 +1,8 @@
-import 'package:flutter/material.dart';
+import 'package:ihun_food_delivery/config/widgets/flutter_toast.dart';
 import '/data/repository/cart_repo.dart';
 import '/model/cart_model.dart';
 import '/model/product.dart';
-import '/theme/palette.dart';
+
 import 'package:get/get.dart';
 
 class CartController extends GetxController {
@@ -57,12 +57,7 @@ class CartController extends GetxController {
           );
         });
       } else {
-        Get.snackbar(
-          "Cart is empty",
-          "Your quantity have to at least one",
-          colorText: Colors.black,
-          backgroundColor: Palette.yellowColor,
-        );
+        toastInfor(text: "Quantity must be greater than 0");
       }
     }
     cartRepo.addToCart(getItems);

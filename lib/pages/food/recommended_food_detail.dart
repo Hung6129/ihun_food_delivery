@@ -2,6 +2,7 @@ import 'package:badges/badges.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ihun_food_delivery/config/palettes.dart';
 import 'package:ihun_food_delivery/controllers/cart_controller.dart';
 import 'package:ihun_food_delivery/controllers/popular_product_controller.dart';
 import 'package:ihun_food_delivery/controllers/recommended_product_controller.dart';
@@ -10,8 +11,7 @@ import 'package:ihun_food_delivery/custom/app_icon.dart';
 import 'package:ihun_food_delivery/custom/big_text.dart';
 import 'package:ihun_food_delivery/custom/dimension.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:ihun_food_delivery/routes/route_helper.dart';
-import 'package:ihun_food_delivery/theme/palette.dart';
+import 'package:ihun_food_delivery/config/routes/route_helper.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
   const RecommendedFoodDetail({
@@ -44,7 +44,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 builder: ((controller) {
                   return (Get.find<PopularProductController>().totalItems >= 1
                       ? badges.Badge(
-                          badgeStyle: const BadgeStyle(badgeColor: Palette.mainColor),
+                          badgeStyle: const BadgeStyle(badgeColor: Palettes.p1),
                           badgeAnimation: const badges.BadgeAnimation.slide(),
                           badgeContent: controller.totalItems >= 1
                               ? BigText(
@@ -69,7 +69,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                 imageUrl: AppConstants.BASE_URL + AppConstants.UPLOAD_URI + product.img!,
                 imageBuilder: (context, imageProvider) => Container(
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
+                    borderRadius:
+                        const BorderRadius.only(bottomLeft: Radius.circular(30), bottomRight: Radius.circular(30)),
                     image: DecorationImage(
                       image: imageProvider,
                       fit: BoxFit.cover,
@@ -114,7 +115,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               ),
             ),
           ),
-          color: Palette.mainColor,
+          color: Palettes.p1,
         ),
         width: double.maxFinite,
         height: Dimensions.bottomSheet,
@@ -153,7 +154,8 @@ class RecommendedFoodDetail extends StatelessWidget {
                                               onPressed: () => controller.setQuantity(false),
                                             ),
                                             SizedBox(width: Dimensions.height15),
-                                            Text(controller.inCartItems.toString(), style: TextStyle(fontSize: Dimensions.font26)),
+                                            Text(controller.inCartItems.toString(),
+                                                style: TextStyle(fontSize: Dimensions.font26)),
                                             SizedBox(width: Dimensions.height15),
                                             ElevatedButton(
                                               child: Text('+', style: TextStyle(fontSize: Dimensions.font26)),
@@ -174,7 +176,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                                                 ElevatedButton(
                                                   style: ButtonStyle(
                                                     padding: MaterialStateProperty.all(const EdgeInsets.all(20)),
-                                                    backgroundColor: MaterialStateProperty.all(Palette.mainColor),
+                                                    backgroundColor: MaterialStateProperty.all(Palettes.p1),
                                                   ),
                                                   child: const Text(
                                                     'Add To Cart',

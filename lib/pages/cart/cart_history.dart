@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:ihun_food_delivery/config/palettes.dart';
 import 'package:intl/intl.dart';
 
 import '../../controllers/cart_controller.dart';
@@ -11,8 +12,8 @@ import '../../custom/big_text.dart';
 import '../../custom/dimension.dart';
 import '../../custom/small_text.dart';
 import '../../model/cart_model.dart';
-import '../../routes/route_helper.dart';
-import '../../theme/palette.dart';
+import '../../config/routes/route_helper.dart';
+
 
 class CartHistory extends StatelessWidget {
   const CartHistory({Key? key}) : super(key: key);
@@ -131,7 +132,7 @@ class CartHistory extends StatelessWidget {
                                       padding: EdgeInsets.symmetric(horizontal: Dimensions.width10, vertical: Dimensions.height10 / 2),
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(Dimensions.radius15 / 2),
-                                        border: Border.all(width: 1, color: Palette.mainColor),
+                                        border: Border.all(width: 1, color: Palettes.p1),
                                       ),
                                       child: const SmallText(text: "See more"),
                                     ),
