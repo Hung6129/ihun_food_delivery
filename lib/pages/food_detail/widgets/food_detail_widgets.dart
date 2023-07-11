@@ -10,7 +10,7 @@ import 'package:ihun_food_delivery/core/app_constants.dart';
 import 'package:ihun_food_delivery/model/product.dart';
 import 'package:badges/badges.dart' as badges;
 
-Future showDialog(BuildContext context, ProductModel product) {
+Future showAddToCartDialog(BuildContext context, ProductModel product) {
   return showModalBottomSheet<void>(
     context: context,
     builder: (BuildContext context) {
@@ -121,7 +121,7 @@ Widget bottomSheetFoodDetailToCart(BuildContext context, ProductModel product) {
                   padding: MaterialStateProperty.all(EdgeInsets.all(15.h)),
                   textStyle: MaterialStateProperty.all(TextStyle(fontSize: 18.sp))),
               onPressed: () {
-                showDialog(context, product);
+                showAddToCartDialog(context, product);
               },
               child: const Text(
                 'Add To Cart',
@@ -162,17 +162,19 @@ Widget sliverAppBarFoodDetail(ProductModel product) {
       GetBuilder<PopularProductController>(
         builder: ((controller) {
           return Get.find<PopularProductController>().totalItems >= 1
-              ? badges.Badge(
+              ? GestureDetector(
                   onTap: () => Get.toNamed(RoutesHelper.getCart()),
-                  badgeStyle: const badges.BadgeStyle(badgeColor: Palettes.p2),
-                  badgeAnimation: const badges.BadgeAnimation.slide(),
-                  badgeContent: controller.totalItems >= 1
-                      ? Text(
-                          controller.totalItems.toString(),
-                          style: TextStyles.defaultStyle.whiteText,
-                        )
-                      : const SizedBox(),
-                  child: Icon(Icons.shopping_bag_rounded, color: Palettes.p2, size: 30.h),
+                  child: badges.Badge(
+                    badgeStyle: const badges.BadgeStyle(badgeColor: Palettes.p2),
+                    badgeAnimation: const badges.BadgeAnimation.slide(),
+                    badgeContent: controller.totalItems >= 1
+                        ? Text(
+                            controller.totalItems.toString(),
+                            style: TextStyles.defaultStyle.whiteText,
+                          )
+                        : const SizedBox(),
+                    child: Icon(Icons.shopping_bag_rounded, color: Palettes.p2, size: 30.h),
+                  ),
                 )
               : GestureDetector(
                   onTap: () => Get.toNamed(RoutesHelper.getCart()),
