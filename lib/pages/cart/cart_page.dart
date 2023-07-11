@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:ihun_food_delivery/base/no_data_page.dart';
 import 'package:ihun_food_delivery/controllers/cart_controller.dart';
-import 'package:ihun_food_delivery/controllers/popular_product_controller.dart';
-import 'package:ihun_food_delivery/controllers/recommended_product_controller.dart';
+
 import 'package:ihun_food_delivery/custom/big_text.dart';
 import 'package:ihun_food_delivery/custom/dimension.dart';
-import 'package:ihun_food_delivery/routes/route_helper.dart';
+
 import 'package:ihun_food_delivery/theme/palette.dart';
 import 'package:intl/intl.dart';
 

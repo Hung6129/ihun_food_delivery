@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
 import 'controllers/cart_controller.dart';
@@ -24,12 +25,14 @@ class MyApp extends StatelessWidget {
       builder: (controller) {
         return GetBuilder<RecommendedProductController>(
           builder: (controller) {
-            return GetMaterialApp(
-              theme: ThemeData(useMaterial3: true),
-              title: 'iHun Food Delivery App',
-              debugShowCheckedModeBanner: false,
-              initialRoute: RoutesHelper.getSplash(),
-              getPages: RoutesHelper.routes,
+            return ScreenUtilInit(
+              builder: (context, child) => GetMaterialApp(
+                theme: ThemeData(useMaterial3: true),
+                title: 'iHun Food Delivery App',
+                debugShowCheckedModeBanner: false,
+                initialRoute: RoutesHelper.getSplash(),
+                getPages: RoutesHelper.routes,
+              ),
             );
           },
         );
