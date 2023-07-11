@@ -22,21 +22,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.find<CartController>().getCartData();
     return GetBuilder<PopularProductController>(
-      builder: (controller) {
-        return GetBuilder<RecommendedProductController>(
-          builder: (controller) {
-            return ScreenUtilInit(
-              builder: (context, child) => GetMaterialApp(
-                theme: ThemeData(useMaterial3: true),
-                title: 'iHun Food Delivery App',
-                debugShowCheckedModeBanner: false,
-                initialRoute: RoutesHelper.getSplash(),
-                getPages: RoutesHelper.routes,
-              ),
-            );
-          },
-        );
-      },
+      builder: (controller) => GetBuilder<RecommendedProductController>(
+        builder: (controller) => ScreenUtilInit(
+          builder: (context, child) => GetMaterialApp(
+            theme: ThemeData(useMaterial3: true),
+            title: 'iHun Food Delivery',
+            debugShowCheckedModeBanner: false,
+            initialRoute: RoutesHelper.getSplash(),
+            getPages: RoutesHelper.routes,
+          ),
+        ),
+      ),
     );
   }
 }

@@ -12,11 +12,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(),
-        body: const SingleChildScrollView(
-          child: Column(
-            children: [PopularFoods(), RecommendedFoods()],
-          ),
-        ));
+      appBar: appBarHomePage(),
+      body: const SingleChildScrollView(
+        child: Column(
+          children: [
+            PopularFoods(),
+            RecommendedFoods(),
+          ],
+        ),
+      ),
+    );
   }
 }

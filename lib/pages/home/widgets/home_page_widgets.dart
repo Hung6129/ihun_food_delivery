@@ -3,6 +3,8 @@ import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:ihun_food_delivery/config/palettes.dart';
+import 'package:ihun_food_delivery/config/text_styles.dart';
 import 'package:ihun_food_delivery/controllers/popular_product_controller.dart';
 import 'package:ihun_food_delivery/controllers/recommended_product_controller.dart';
 import 'package:ihun_food_delivery/core/app_constants.dart';
@@ -65,6 +67,10 @@ class _PopularFoodsState extends State<PopularFoods> {
 
         return Column(
           children: [
+            Text(
+              'Popular Foods',
+              style: TextStyles.customStyle.bold.setColor(Palettes.p2).appTitle,
+            ),
             CarouselSlider(
               items: imageSliders,
               carouselController: carousellController,
@@ -88,6 +94,11 @@ class _PopularFoodsState extends State<PopularFoods> {
                 activeShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5.h)),
               ),
             ),
+            SizedBox(height: 30.h),
+            Text(
+              'Recommended Foods',
+              style: TextStyles.customStyle.bold.setColor(Palettes.p2).appTitle,
+            ),
           ],
         );
       },
@@ -95,14 +106,9 @@ class _PopularFoodsState extends State<PopularFoods> {
   }
 }
 
-class RecommendedFoods extends StatefulWidget {
+class RecommendedFoods extends StatelessWidget {
   const RecommendedFoods({super.key});
 
-  @override
-  State<RecommendedFoods> createState() => _RecommendedFoodsState();
-}
-
-class _RecommendedFoodsState extends State<RecommendedFoods> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RecommendedProductController>(
@@ -114,16 +120,15 @@ class _RecommendedFoodsState extends State<RecommendedFoods> {
           final data = controller.recommendedProductList[index];
           return GestureDetector(
             onTap: () => Get.toNamed(RoutesHelper.getRecommendedFood(index, "home")),
-            child: CustomListItem(
-              location: data.location!,
-              price: data.price!,
-              thumbnail: Image.network(
-                '${AppConstants.BASE_URL}/uploads/${data.img}',
-                fit: BoxFit.cover,
-                width: 150.w,
-                height: 100.h,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: CustomListItem(
+                location: data.location!,
+                price: data.price!,
+                thumbnail: Image.network('${AppConstants.BASE_URL}/uploads/${data.img}',
+                    fit: BoxFit.cover, width: 150.w, height: 100.h),
+                title: data.name!,
               ),
-              title: data.name!,
             ),
           );
         },
@@ -148,29 +153,24 @@ class CustomListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: 5.h, horizontal: 5.w),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              flex: 2,
-              child: thumbnail,
-            ),
-            SizedBox(
-              width: 10.h,
-            ),
-            Expanded(
-              flex: 3,
-              child: _VideoDescription(
-                title: title,
-                location: location,
-                price: price,
-              ),
-            ),
-          ],
+    return Row(
+      children: <Widget>[
+        Expanded(
+          flex: 2,
+          child: thumbnail,
         ),
-      ),
+        SizedBox(
+          width: 10.h,
+        ),
+        Expanded(
+          flex: 3,
+          child: _VideoDescription(
+            title: title,
+            location: location,
+            price: price,
+          ),
+        ),
+      ],
     );
   }
 }
@@ -195,10 +195,7 @@ class _VideoDescription extends StatelessWidget {
         children: <Widget>[
           Text(
             title,
-            style: TextStyle(
-              fontWeight: FontWeight.w500,
-              fontSize: 18.sp,
-            ),
+            style: TextStyles.customStyle.bold.bold.setTextSize(18.sp),
           ),
           Padding(padding: EdgeInsets.symmetric(vertical: 2.h)),
           Text(
@@ -212,4 +209,37 @@ class _VideoDescription extends StatelessWidget {
       ),
     );
   }
+}
+
+PreferredSizeWidget appBarHomePage() {
+  return AppBar(
+    leadingWidth: 100.w,
+    leading: Row(
+      children: [
+        SizedBox(width: 10.w),
+        CircleAvatar(
+          radius: 20.h,
+          child: const Icon(
+            Icons.person,
+            color: Palettes.p1,
+          ),
+        ),
+      ],
+    ),
+    actions: [
+      GetBuilder<PopularProductController>(
+        builder: ((controller) {
+          return GestureDetector(
+            onTap: () => Get.toNamed(RoutesHelper.getCart()),
+            child: Icon(
+              Icons.shopping_bag_rounded,
+              color: Palettes.p1,
+              size: 30.h,
+            ),
+          );
+        }),
+      ),
+      SizedBox(width: 20.w)
+    ],
+  );
 }
