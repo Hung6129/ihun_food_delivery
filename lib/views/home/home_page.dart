@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ihun_food_delivery/pages/home/widgets/home_page_widgets.dart';
+import 'package:ihun_food_delivery/views/home/widgets/home_page_widgets.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

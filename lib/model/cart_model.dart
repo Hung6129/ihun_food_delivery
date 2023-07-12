@@ -10,15 +10,7 @@ class CartModel {
   String? time;
   ProductModel? productModel;
 
-  CartModel(
-      {this.id,
-      this.name,
-      this.price,
-      this.img,
-      this.quantity,
-      this.isExist,
-      this.time,
-      this.productModel});
+  CartModel({this.id, this.name, this.price, this.img, this.quantity, this.isExist, this.time, this.productModel});
 
   CartModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -40,7 +32,7 @@ class CartModel {
       "quantity": quantity,
       "isExist": isExist,
       "time": time,
-      "productModel": productModel,
+      "productModel": productModel!.toJson(),
     };
   }
 }

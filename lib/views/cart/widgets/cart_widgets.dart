@@ -89,41 +89,53 @@ Widget cartBody() {
                 //   Get.toNamed(RoutesHelper.getPopularFood(refIndex));
                 // }
               },
-              child: Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    title: Text(
-                      cartItem.name!,
-                      style: TextStyles.customStyle.bold.setTextSize(18.sp).setColor(Palettes.p1),
-                    ),
-                    subtitle: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('$cartDate - $cartTime'),
-                        Text('\$${cartItem.price}'),
-                      ],
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            controller.addItems(cartItem.productModel!, -1);
-                          },
-                          child: const Icon(Icons.remove, color: Palettes.p3),
-                        ),
-                        SizedBox(width: 5.w),
-                        Text(cartItem.quantity.toString(), style: TextStyle(fontSize: 18.sp)),
-                        SizedBox(width: 5.w),
-                        GestureDetector(
-                          onTap: () {
-                            controller.addItems(cartItem.productModel!, 1);
-                          },
-                          child: const Icon(Icons.add, color: Palettes.p3),
-                        ),
-                      ],
-                    ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  leading: Image.network(
+                    AppConstants.BASE_URL + AppConstants.UPLOAD_URI + cartItem.img!,
+                    width: 90.w,
+                    height: 80.h,
+                    fit: BoxFit.cover,
+                  ),
+                  title: Text(
+                    cartItem.name!,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: TextStyles.customStyle.bold.setTextSize(16.sp).setColor(Palettes.p1),
+                  ),
+                  subtitle: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '$cartDate - $cartTime',
+                        style: TextStyles.defaultStyle.setTextSize(10.sp),
+                      ),
+                      Text(
+                        '\$${cartItem.price}',
+                        style: TextStyles.defaultStyle.setTextSize(10.sp),
+                      ),
+                    ],
+                  ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          controller.addItems(cartItem.productModel!, -1);
+                        },
+                        child: const Icon(Icons.remove, color: Palettes.p3),
+                      ),
+                      SizedBox(width: 2.w),
+                      Text(cartItem.quantity.toString(), style: TextStyle(fontSize: 18.sp)),
+                      SizedBox(width: 2.w),
+                      GestureDetector(
+                        onTap: () {
+                          controller.addItems(cartItem.productModel!, 1);
+                        },
+                        child: const Icon(Icons.add, color: Palettes.p3),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -235,6 +247,10 @@ Widget cartHisBody() {
                                 "Total Price",
                                 style: TextStyles.defaultStyle.copyWith(color: Palettes.p1).bold,
                               ),
+                              // Text(
+                              //   "\$${}",
+                              //   style: TextStyles.defaultStyle.copyWith(color: Palettes.p1).bold,
+                              // ),
                               Text("${itemsPerOrder[i]} Items"),
                               GestureDetector(
                                 onTap: () {

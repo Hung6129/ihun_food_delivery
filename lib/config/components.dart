@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:ihun_food_delivery/config/palettes.dart';
-import 'package:ihun_food_delivery/pages/cart/cart_history.dart';
-import 'package:ihun_food_delivery/pages/home/home_page.dart';
-import 'package:ihun_food_delivery/pages/profile/user_profile_page.dart';
+import 'package:ihun_food_delivery/views/cart/cart_history.dart';
+import 'package:ihun_food_delivery/views/home/home_page.dart';
+import 'package:ihun_food_delivery/views/profile/user_profile_page.dart';
 
 const List<NavigationDestination> appBarDestinations = [
   NavigationDestination(

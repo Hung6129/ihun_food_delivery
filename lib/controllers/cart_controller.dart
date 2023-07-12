@@ -17,8 +17,8 @@ class CartController extends GetxController {
 
   Map<int, CartModel> get items => _items;
 
-  // local storage
-  List<CartModel> storageModel = [];
+  // local storage, only for storage
+  List<CartModel> storageItems = [];
 
   // add to cart
   void addItems(ProductModel productModel, int quantity) {
@@ -60,7 +60,7 @@ class CartController extends GetxController {
         toastInfor(text: "Quantity must be greater than 0");
       }
     }
-    cartRepo.addToCart(getItems);
+    cartRepo.addToCartList(getItems);
     update();
   }
 
@@ -108,15 +108,14 @@ class CartController extends GetxController {
   }
 
   List<CartModel> getCartData() {
-    setCart = cartRepo.getCartModel();
-    return storageModel;
+    setCart = cartRepo.getCartList();
+    return storageItems;
   }
 
   set setCart(List<CartModel> items) {
-    storageModel = items;
-    print("length of cart items${storageModel.length}");
-    for (int i = 0; i < storageModel.length; i++) {
-      _items.putIfAbsent(storageModel[i].productModel!.id!, () => storageModel[i]);
+    storageItems = items;
+    for (int i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(storageItems[i].productModel!.id!, () => storageItems[i]);
     }
   }
 
@@ -140,7 +139,7 @@ class CartController extends GetxController {
   }
 
   void addToCartList() {
-    cartRepo.addToCart(getItems);
+    cartRepo.addToCartList(getItems);
     update();
   }
 }

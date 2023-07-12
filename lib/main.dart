@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
-import 'controllers/cart_controller.dart';
+import 'package:ihun_food_delivery/controllers/cart_controller.dart';
 import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'config/routes/route_helper.dart';

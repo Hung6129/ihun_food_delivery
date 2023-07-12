@@ -39,6 +39,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/image/profile.png
+    - assets/image/
 
 
   fonts:

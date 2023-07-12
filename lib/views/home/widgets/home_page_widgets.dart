@@ -125,8 +125,18 @@ class RecommendedFoods extends StatelessWidget {
               child: CustomListItem(
                 location: data.location!,
                 price: data.price!,
-                thumbnail: Image.network('${AppConstants.BASE_URL}/uploads/${data.img}',
-                    fit: BoxFit.cover, width: 150.w, height: 100.h),
+                thumbnail: Container(
+                  width: 150.w,
+                  height: 100.h,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15.h),
+                    image: DecorationImage(
+                        image: NetworkImage(
+                          '${AppConstants.BASE_URL}/uploads/${data.img}',
+                        ),
+                        fit: BoxFit.cover),
+                  ),
+                ),
                 title: data.name!,
               ),
             ),
