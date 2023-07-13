@@ -165,15 +165,17 @@ Widget sliverAppBarFoodDetail(ProductModel product) {
               ? GestureDetector(
                   onTap: () => Get.toNamed(RoutesHelper.getCart()),
                   child: badges.Badge(
-                    badgeStyle: const badges.BadgeStyle(badgeColor: Palettes.p2),
+                    badgeStyle: const badges.BadgeStyle(
+                      badgeColor: Palettes.textWhite,
+                    ),
                     badgeAnimation: const badges.BadgeAnimation.slide(),
                     badgeContent: controller.totalItems >= 1
                         ? Text(
                             controller.totalItems.toString(),
-                            style: TextStyles.defaultStyle.whiteText,
+                            style: TextStyles.defaultStyle.blackText,
                           )
                         : const SizedBox(),
-                    child: Icon(Icons.shopping_bag_rounded, color: Palettes.p2, size: 30.h),
+                    child: Icon(Icons.shopping_bag_rounded, color: Palettes.p1, size: 26.h),
                   ),
                 )
               : GestureDetector(
@@ -181,7 +183,7 @@ Widget sliverAppBarFoodDetail(ProductModel product) {
                   child: Icon(
                     Icons.shopping_bag_rounded,
                     color: Palettes.p1,
-                    size: 30.h,
+                    size: 26.h,
                   ),
                 );
         }),

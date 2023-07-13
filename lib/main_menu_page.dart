@@ -18,11 +18,10 @@ class _MainMenuPageState extends State<MainMenuPage> {
     return Scaffold(
       body: pageWidget[navDrawerIndex],
       bottomNavigationBar: NavigationBar(
-        height: 50.h,
+        height: 45.h,
         backgroundColor: Palettes.p4,
         indicatorColor: Palettes.textWhite,
         animationDuration: const Duration(milliseconds: 200),
-        surfaceTintColor: Palettes.p5,
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
         onDestinationSelected: (selectedIndex) {
           setState(() {

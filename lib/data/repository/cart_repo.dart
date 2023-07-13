@@ -15,10 +15,10 @@ class CartRepo {
   List<String> cartHistory = [];
 
   void addToCartList(List<CartModel> cartList) {
-    var time = DateTime.now().toString();
+    var getTimeNow = DateTime.now().toString();
     cart = [];
     for (var element in cartList) {
-      element.time = time;
+      element.time = getTimeNow;
       cart.add(jsonEncode(element));
     }
     share.setStringList(AppConstants.CART_LIST, cart);
@@ -54,7 +54,6 @@ class CartRepo {
       cartHistory = share.getStringList(AppConstants.CART_HISTORY_LIST)!;
     }
     for (int i = 0; i < cart.length; i++) {
-      print("list ${cart[i]}");
       cartHistory.add(cart[i]);
     }
     removeCart();

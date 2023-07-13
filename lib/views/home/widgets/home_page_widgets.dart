@@ -244,7 +244,7 @@ PreferredSizeWidget appBarHomePage() {
             child: Icon(
               Icons.shopping_bag_rounded,
               color: Palettes.p1,
-              size: 30.h,
+              size: 26.h,
             ),
           );
         }),
