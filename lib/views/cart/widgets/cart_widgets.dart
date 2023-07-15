@@ -20,13 +20,11 @@ PreferredSizeWidget appBarCart() {
       Container(
         padding: const EdgeInsets.only(right: 20),
         child: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Get.toNamed(RoutesHelper.getInitial());
+          },
           icon: const Icon(Icons.home_rounded),
         ),
-      ),
-      IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.shopping_bag_rounded),
       ),
     ],
   );
@@ -181,18 +179,35 @@ Widget cartHisBody() {
     return cartItemsPerOrder.entries.map((e) => e.value).toList();
   }
 
-  // List<String> cartOrderTimeToList() {
-  //   return cartItemsPerOrder.entries.map((e) => e.key).toList();
-  // }
+  List<String> cartOrderTimeToList() {
+    return cartItemsPerOrder.entries.map((e) => e.key).toList();
+  }
+
+  Widget timeWidget(int index) {
+    DateTime parseTime = DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[index].time!);
+    var output = DateFormat("dd/MM/yyyy hh:mm a");
+    var outDate = output.format(parseTime);
+    return Text(
+      outDate,
+      style: TextStyles.customStyle.bold.setTextSize(18.sp).setColor(Palettes.p1),
+    );
+  }
 
   List<int> itemsPerOrder = cartItemsitemsPerOrder();
   var saveCounter = 0;
-  return ListView.builder(
-      shrinkWrap: true,
-      scrollDirection: Axis.vertical,
-      physics: const BouncingScrollPhysics(),
-      itemCount: itemsPerOrder.length,
-      itemBuilder: (context, i) => Container(
+  return itemsPerOrder.isEmpty
+      ? const Center(
+          child: NodataPage(
+            text: "You haven't order any food yet, try to order some food.",
+            imagePath: "assets/image/empty_box.png",
+          ),
+        )
+      : ListView.builder(
+          shrinkWrap: true,
+          scrollDirection: Axis.vertical,
+          physics: const BouncingScrollPhysics(),
+          itemCount: itemsPerOrder.length,
+          itemBuilder: (context, i) => Container(
             margin: EdgeInsets.only(top: 20.h, left: 10.w, right: 10.w),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -200,16 +215,7 @@ Widget cartHisBody() {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    (() {
-                      DateTime parseTime =
-                          DateFormat("yyyy-MM-dd HH:mm:ss").parse(getCartHistoryList[saveCounter].time!);
-                      var output = DateFormat("dd/MM/yyyy hh:mm a");
-                      var outDate = output.format(parseTime);
-                      return Text(
-                        outDate,
-                        style: TextStyles.customStyle.bold.setTextSize(18.sp).setColor(Palettes.p1),
-                      );
-                    }()),
+                    timeWidget(saveCounter),
                     GestureDetector(
                       onTap: () {
                         // var orderTime = cartOrderTimeToList();
@@ -273,5 +279,6 @@ Widget cartHisBody() {
                     })
               ],
             ),
-          ));
+          ),
+        );
 }

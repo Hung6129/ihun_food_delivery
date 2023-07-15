@@ -120,7 +120,11 @@ class CartController extends GetxController {
   }
 
   void addToHistory() {
-    cartRepo.addToCartHistory();
+    if (getItems.isNotEmpty) {
+      cartRepo.addToCartHistory();
+    } else {
+      toastInfor(text: "Your cart is empty\nPlease add some food before checkout");
+    }
     clear();
   }
 

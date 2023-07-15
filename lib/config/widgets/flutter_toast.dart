@@ -6,12 +6,14 @@ toastInfor({
   required String text,
   Color bgColor = Colors.black,
   Color textColor = Colors.white,
-}) => Fluttertoast.showToast(
-    msg: text,
-    backgroundColor: bgColor,
-    textColor: textColor,
-    toastLength: Toast.LENGTH_SHORT,
-    timeInSecForIosWeb: 2,
-    gravity: ToastGravity.TOP,
-    fontSize: 16.sp,
-  );
+}) =>
+    Fluttertoast.showToast(
+      webPosition: "center",
+      msg: text,
+      backgroundColor: bgColor,
+      textColor: textColor,
+      toastLength: Toast.LENGTH_SHORT,
+      timeInSecForIosWeb: 2,
+      gravity: ToastGravity.TOP,
+      fontSize: 14.sp,
+    );
