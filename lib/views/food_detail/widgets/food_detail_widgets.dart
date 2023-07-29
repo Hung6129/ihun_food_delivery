@@ -6,8 +6,8 @@ import 'package:ihun_food_delivery/config/palettes.dart';
 import 'package:ihun_food_delivery/config/routes/route_helper.dart';
 import 'package:ihun_food_delivery/config/text_styles.dart';
 import 'package:ihun_food_delivery/controllers/popular_product_controller.dart';
-import 'package:ihun_food_delivery/core/app_constants.dart';
-import 'package:ihun_food_delivery/model/product.dart';
+import 'package:ihun_food_delivery/config/constants/app_constants.dart';
+import 'package:ihun_food_delivery/data/model/product.dart';
 import 'package:badges/badges.dart' as badges;
 
 Future showAddToCartDialog(BuildContext context, ProductModel product) {

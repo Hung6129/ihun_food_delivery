@@ -1,8 +1,8 @@
 import 'package:ihun_food_delivery/config/widgets/flutter_toast.dart';
 import '/controllers/cart_controller.dart';
 import '/data/repository/popular_product_repo.dart';
-import '/model/cart_model.dart';
-import '/model/product.dart';
+import '../data/model/cart_model.dart';
+import '../data/model/product.dart';
 
 import 'package:get/get.dart';
 

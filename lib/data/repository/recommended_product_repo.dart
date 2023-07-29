@@ -1,4 +1,4 @@
-import '../../core/app_constants.dart';
+import '../../config/constants/app_constants.dart';
 import '/data/api/api_client.dart';
 import 'package:get/get.dart';
 

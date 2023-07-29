@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -8,9 +6,7 @@ import 'package:ihun_food_delivery/config/palettes.dart';
 import 'package:ihun_food_delivery/config/routes/route_helper.dart';
 import 'package:ihun_food_delivery/config/text_styles.dart';
 import 'package:ihun_food_delivery/controllers/cart_controller.dart';
-
-import 'package:ihun_food_delivery/core/app_constants.dart';
-import 'package:ihun_food_delivery/model/cart_model.dart';
+import 'package:ihun_food_delivery/config/constants/app_constants.dart';
 import 'package:intl/intl.dart';
 
 PreferredSizeWidget appBarCart() {

@@ -1,5 +1,5 @@
 import '/data/repository/recommended_product_repo.dart';
-import '/model/product.dart';
+import '../data/model/product.dart';
 import 'package:get/get.dart';
 
 class RecommendedProductController extends GetxController {
