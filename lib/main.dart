@@ -5,7 +5,7 @@ import 'package:ihun_food_delivery/controllers/cart_controller.dart';
 import 'controllers/popular_product_controller.dart';
 import 'controllers/recommended_product_controller.dart';
 import 'config/routes/route_helper.dart';
-import 'helper/dependencies.dart' as depen;
+import 'data/helper/dependencies.dart' as depen;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

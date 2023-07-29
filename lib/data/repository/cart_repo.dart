@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../core/app_constants.dart';
-import '../../model/cart_model.dart';
+import '../../config/constants/app_constants.dart';
+import '../model/cart_model.dart';
 
 class CartRepo {
   final SharedPreferences share;
